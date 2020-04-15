@@ -1,0 +1,19 @@
+body {
+  background-color:#121212;
+}
+.container{
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 10% 90%;
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+    justify-items: center;
+    align-items: center;
+    box-shadow: 3px 3px 5px 6px black;
+    background-color: #212121;
+}
