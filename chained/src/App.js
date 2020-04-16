@@ -16,12 +16,19 @@ const App = ()=>{
 
   return (
     <div className= {Styles.container}>
-
+    <div className = {Styles.Toolbar}>
     <Toolbar></Toolbar>
-    <BrowserRouter>
-      <Route  path ={routes.home} exact component = {Home}></Route>
-      <Route  path ={routes.profile} exact component = {Profile}></Route>
-    </BrowserRouter>
+    </div>
+
+    
+      <BrowserRouter>
+        <Route  path ={routes.home} exact component = {Home}></Route>
+        <div className = {Styles.displayContainer}>
+            <Route  path ={routes.profile} exact component = {Profile}></Route>
+        </div>
+      </BrowserRouter>
+    
+   
     </div>
     
   )

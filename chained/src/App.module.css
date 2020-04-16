@@ -17,3 +17,11 @@ body {
     box-shadow: 3px 3px 5px 6px black;
     background-color: #212121;
 }
+.displayContainer{
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  border: 2px solid red;
+  height: 100%;
+}
+

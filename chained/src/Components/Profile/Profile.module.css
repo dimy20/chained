@@ -1,0 +1,13 @@
+.title{
+    position: absolute;
+    justify-self: end;
+    left: 0;
+    top: 0;
+    color: cornflowerblue;
+}
+.container{
+    margin-left: 10px;
+    margin-top: 10px;
+    align-self: start;
+    justify-self: start;
+}
