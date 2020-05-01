@@ -1,10 +1,11 @@
 .container{
     display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 20% 65% 15%;
     width: 98%;
     margin-left: 2%;
     align-self: center;
-    gap: 10px;
+    gap: 2px;
+    justify-items: start start start;
 }
 .btn{
     border-radius: 10px;
@@ -32,7 +33,7 @@
     border: none;
     background-color: rgba(128, 128, 128,0.6);
     color: white;
-    justify-self: start;
+    justify-self: center;
 }
 .input:hover{
     background-color: rgba(128, 128, 128,1);
@@ -40,4 +41,12 @@
 .btnContainer{
     width: 90%;
     justify-self: end;
+}
+.btnOptionesContainer{
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-self: start;
+    gap: 10px;
+    margin-left: 20px;
 }
