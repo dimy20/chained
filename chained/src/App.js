@@ -20,6 +20,7 @@ const App = ()=>{
     <div className= {Styles.container}>        
           <BrowserRouter>
             <Route path = {routes.signup} exact component = {WelcomePage}></Route>
+            <Route  path ={routes.home} exact component = {Toolbar}></Route>
             <Route  path ={routes.home} exact component = {Home}></Route>
             <div className = {Styles.displayContainer}>
                 <Route  path ={routes.profile} exact component = {Profile}></Route>
