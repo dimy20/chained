@@ -1,0 +1,32 @@
+.container{
+    padding: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    gap: 5px;
+}
+
+.input{
+    border-radius: 4px;
+    border: 2px solid rgba(15, 82, 186, 0.7);
+    padding: 4px;
+    outline: none;
+    box-sizing: border-box;
+    background-color: #121212;
+    width: 100%;
+    color: white;
+}
+.input:focus{
+    border: 2px solid rgba(15, 82, 186, 1);
+}
+.btn{
+    background-color:rgba(15, 82, 186, 1);
+    padding: 5px;
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 0 4px 0 rgba(15, 82, 186, 1);
+    border: none;
+    color: black;
+}

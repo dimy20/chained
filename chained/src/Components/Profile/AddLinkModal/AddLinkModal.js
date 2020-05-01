@@ -1,6 +1,8 @@
-import React from 'react';
-import {Modal,Button,InputGroup,FormControl,Form} from 'react-bootstrap';
-import Styles from './AddLinkModal.module.css';
+import React,{forwardRef} from 'react';
+import {Modal,Button} from 'react-bootstrap';
+/* import Styles from './AddLinkModal.module.css';*/
+import FormikForm from '../../FormikForm/FormikForm';
+
 const AddLinkModal = (props)=>{
     return(
         
@@ -14,26 +16,7 @@ const AddLinkModal = (props)=>{
                 <h1>Create a new group</h1>
             </Modal.Header>
             <Modal.Body>
-                <Form>
-                    <Form.Group>
-                        <Form.Label>Group name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter name" />
-                        <Form.Text className="text-muted">
-                        This name well be showed to other users.
-                        </Form.Text>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Group description</Form.Label>
-                        <Form.Control as="textarea" rows="3" />
-                        <Form.Text className="text-muted">
-                        Short description of what your group is about.
-                        </Form.Text>
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                    Save
-                    </Button>
-                </Form>
-                
+                <FormikForm></FormikForm>
              </Modal.Body>
 
             <Modal.Footer>
@@ -42,4 +25,5 @@ const AddLinkModal = (props)=>{
         </Modal>
            )
 }
-export default AddLinkModal;
+const forwardAddLinkModal = forwardRef(AddLinkModal)
+export default forwardAddLinkModal;

@@ -3,7 +3,7 @@
     display: grid;
     border: 2px solid red;
     width: 30%;
-    height: 25%;
+    height: 100%;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     justify-items: center;
