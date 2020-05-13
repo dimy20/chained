@@ -1,10 +1,32 @@
 
 .container{
     display: grid;
-    border: 2px solid red;
+    grid-template-columns: 1fr;
+    gap: 20px;
     width: 100%;
     height: 100%;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
     justify-items: center;
+}
+.test{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+}
+.CardContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+.loadingContainer{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+.Loading{
+    color: white;
 }
