@@ -1,4 +1,61 @@
-.container{
+.Wrapper{
+    position: relative;;
+}
+.img{
     border-radius: 20px;
     width: 100%;
+}
+.imgOnHover{
+    border-radius: 20px;
+    width: 100%;
+    animation-name: onHover;
+    animation-duration: 200ms;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+.OptionsButton{
+    position: absolute;
+    opacity: 1;
+    left: 5%;
+    bottom: 5%;
+    border-radius: 20%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    background-color: lightgray;
+    animation-name: onEnterAnimation;
+    animation-duration: 250ms;
+}
+.GuardarButtonVisible{
+    border: none;
+    background-color:red;
+    border-radius: 25px;
+    padding: 10px;
+    font-size: 12px;
+    color: white;
+    outline: none;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    animation-name: onEnterAnimation;
+    animation-duration: 250ms;
+}
+/* Animations */
+@keyframes onEnterAnimation{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes onHover{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0.7;
+    }
 }
