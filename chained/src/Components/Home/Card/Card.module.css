@@ -41,6 +41,9 @@
     animation-name: onEnterAnimation;
     animation-duration: 250ms;
 }
+.ListItem{
+    width: 100%;
+}
 /* Animations */
 @keyframes onEnterAnimation{
     from{
@@ -57,5 +60,18 @@
     }
     to{
         opacity: 0.7;
+        
     }
+}
+.test{
+    width: 100%;
+    border: none;
+}
+.test:hover{
+    background-color:lightgrey;
+}
+.testContainer{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 5px;
 }
