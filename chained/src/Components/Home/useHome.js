@@ -1,11 +1,16 @@
 import {useState,useEffect,useContext, useRef} from 'react';
-import SearchContext from '../../SearchContext'
+import ImagesContext from '../../ImagesContext';
 import axios from 'axios';
 const useHome = (query,imgNumber)=>{
      const [Loading,setLoading] = useState(true);
      const [Err,setErr] = useState(false);
      const [ImgArr,setImgArr] = useState([]);
      const [hasMore,setHasMore] = useState(false);
+     const {ImgArrContext,setImgArrContext} = useContext(ImagesContext);
+     useEffect(()=>{
+        setImgArrContext(ImgArr)
+        console.log(ImgArrContext);
+     },[ImgArr])
      useEffect(()=>{
         setImgArr([]);
      },[query]);
@@ -19,9 +24,10 @@ const useHome = (query,imgNumber)=>{
             cancelToken : new axios.CancelToken((c)=> cancel = c)
         })
         .then(response=>{
+            //FIX THIS REPETTITIOS
             setImgArr(prevImgs=>{
                 return [...new Set([...prevImgs,...response.data.hits])]
-            })
+            });
             setLoading(false);
         }).catch(err=>{
             //ignore everytime we cancel the request

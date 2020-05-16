@@ -1,14 +1,22 @@
-import React, {useRef,useState} from 'react';
+import React, {useRef,useState, useContext} from 'react';
+import {Link} from 'react-router-dom';
 import Styles from './Card.module.css';
 import {Popover,OverlayTrigger,ListGroup} from 'react-bootstrap';
 const Card = (props)=>{
-    const {src} = props;
+    const {src,history} = props;
     const [IsHovered, setIsHovered] = useState(false);
     const handleOnMouseOver = ()=>{
         setIsHovered(true);
     }
     const handleOnMouseLeave = ()=>{
         setIsHovered(false);
+    };
+    
+    const handleCardClick = ()=>{
+        history.push({
+            pathname : '/pin',
+            state : {src : src}
+        });
     }
 
     const popover = (
@@ -25,22 +33,34 @@ const Card = (props)=>{
       );
 
     return (
-        <div onMouseLeave = {handleOnMouseLeave} onMouseOver= {handleOnMouseOver} className = {Styles.Wrapper}>
+        <div onClick = {handleCardClick} onMouseLeave = {handleOnMouseLeave} onMouseOver= {handleOnMouseOver} className = {Styles.Wrapper}>
                 <img className = {IsHovered ? Styles.imgOnHover : Styles.img} src = {src} height = '200px'>
                 </img>
-                    {IsHovered &&                        
+                <div className = {Styles.container}>
+                {
+                        IsHovered &&
+                        <button className = {Styles.ShareButton}>
+                            ___
+                        </button>
+                    }
+                    
+                    {IsHovered &&
+                        <OverlayTrigger trigger = 'click' placement = 'right' overlay = {popover}>
+                            <button className = {Styles.OptionsButton}>...</button>
+                        </OverlayTrigger>
+                         }
+
+                    
+                    
+                    {   IsHovered &&                        
                         <button className = {Styles.GuardarButtonVisible}>
                         GUARDAR
                         </button>  
                     }
-                    {IsHovered &&
-                        <OverlayTrigger trigger = 'click' placement = 'right' overlay = {popover}>
-                        
-                            <button className = {Styles.OptionsButton}>...</button>
-                        
-                        </OverlayTrigger>
-                        
-                    }       
+                    
+                           
+                </div>
+                  
         </div>
     )
 }
