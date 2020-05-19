@@ -18,8 +18,8 @@ export default function Tab() {
 
     return (
         <div>
-            <button onClick = {handleFotosClick} className = {Styles.Fotos}>Fotos</button>
-            <button onClick = {handleComentariosClick} className = {Styles.Comentarios}>Comentarios</button>
+            <button onClick = {handleFotosClick} className = {isFotosActive ? Styles.FotosActive : Styles.FotosNotActive}>Fotos</button>
+            <button onClick = {handleComentariosClick} className = {isComentariosActive ? Styles.ComentariosActive : Styles.ComentariosNotActive}>Comentarios</button>
             <div className= {Styles.DisplayArea}>
                 {isFotosActive && <Fotos></Fotos>}
                 {isComentariosActive && <Comentarios></Comentarios>}

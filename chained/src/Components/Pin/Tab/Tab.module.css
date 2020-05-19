@@ -1,16 +1,38 @@
-.Fotos{
+.FotosActive{
     border: none;
     background-color: white;
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid black;
     margin: 5px;
+    outline: none;
+    font-stretch: expanded;
 }
-.Comentarios{
+.ComentariosActive{
     border: none;
     background-color: white;
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid black;
+    outline: none;
 }
 .DisplayArea{
     border: 2px solid red;
     width: 100%;
     height: 200px;
+    outline: none;
+}
+
+.FotosNotActive{
+    border: none;
+    background-color: white;
+    margin: 5px;
+    outline: none;
+}
+.ComentariosNotActive{
+    border: none;
+    background-color: white;
+    outline: none;
+}
+.FotosActive:focus{
+    outline: none;
+}
+.ComentariosActive:focus{
+    outline: none;
 }
