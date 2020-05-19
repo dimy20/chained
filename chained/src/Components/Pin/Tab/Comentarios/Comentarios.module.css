@@ -1,0 +1,44 @@
+.Container{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 20% 50% 30%;
+    gap: 10px;
+}
+.TextArea{
+    width: 100%;
+    height: 50%;
+    border-radius: 20px;
+    justify-self: end;
+    align-self: center;
+    margin: 5%;
+    transition: all ease-in 150ms;
+    border: 2px solid black;
+    padding: 10px;
+    resize: none;
+
+
+}
+.TextArea:focus{
+    width: 100%;
+    height: 70%;
+    border-radius: 20px;
+    justify-self: end;
+    outline:none;
+    border: 3px solid black;
+    background-color: cornsilk;
+}
+.WrapperOne{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.avatar{
+    justify-self: start;
+    align-self: center;
+    margin-left: 14%;
+    width: 100%;
+    height: 100%;
+}

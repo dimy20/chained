@@ -4,8 +4,8 @@
     display: grid;
 }
 .pin{
-    width: 45%;
-    height: 450px;
+    width: 60%;
+    height: 600px;
     border-radius: 20px;
     justify-self: center;
     align-self: stretch;
@@ -13,5 +13,8 @@
     margin-top: 1%;
     grid-template-columns: 1fr 1fr;
     background-color: white;
+    -webkit-box-shadow: 4px 3px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 3px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 4px 3px 5px 0px rgba(0,0,0,0.75);
 
 }

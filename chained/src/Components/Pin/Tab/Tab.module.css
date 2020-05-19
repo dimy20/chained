@@ -1,0 +1,16 @@
+.Fotos{
+    border: none;
+    background-color: white;
+    border-bottom: 2px solid black;
+    margin: 5px;
+}
+.Comentarios{
+    border: none;
+    background-color: white;
+    border-bottom: 2px solid black;
+}
+.DisplayArea{
+    border: 2px solid red;
+    width: 100%;
+    height: 200px;
+}
