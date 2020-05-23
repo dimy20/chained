@@ -1,0 +1,10 @@
+.wrapper {
+	justify-self: center;
+	margin-top: 10px;
+	width: 90%;
+	height: 100%;
+	border: 2px solid black;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	gap: 15px;
+}

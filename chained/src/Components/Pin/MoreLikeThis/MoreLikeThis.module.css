@@ -1,0 +1,12 @@
+.wrapper {
+	width: 100%;
+	height: 100%;
+	border: 2px solid green;
+	display: grid;
+	grid-template-rows: 5% 95%;
+}
+.heading {
+	color: white;
+	justify-self: center;
+	margin-top: 10px;
+}
