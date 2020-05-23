@@ -25,6 +25,7 @@ const useHome = (query,imgNumber)=>{
         })
         .then(response=>{
             //FIX THIS REPETTITIOS
+            console.log(response.data.hits[0].id);
             setImgArr(prevImgs=>{
                 return [...new Set([...prevImgs,...response.data.hits])]
             });
