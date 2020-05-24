@@ -1,32 +1,9 @@
-
-.container{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    width: 100%;
-    height: 100%;
-    justify-items: center;
-}
-.test{
-    width: 200px;
-    height: 200px;
-    background-color: blue;
-}
-.CardContainer{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 20px;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-}
-.loadingContainer{
-    width: 100%;
-    height: 100%;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-}
-.Loading{
-    color: white;
+.container {
+	display: grid;
+	grid-template-columns: 1fr;
+	width: 100%;
+	height: 100%;
+	justify-items: center;
+	border: 2px solid red;
+	overflow: visible;
 }
