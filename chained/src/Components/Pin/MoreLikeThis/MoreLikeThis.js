@@ -10,7 +10,6 @@ export default function MoreLikeThis(props) {
 	const { history } = props;
 	const [Loading, setLoading] = useState(true);
 	const [pageNumber, setPageNumber] = useState(1);
-
 	const observer = useRef();
 	const lastImgElement = useCallback(
 		(node) => {

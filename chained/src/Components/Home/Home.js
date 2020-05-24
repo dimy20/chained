@@ -23,7 +23,7 @@ const Home = ({ history }) => {
 	const [imgNumber, setimgNumber] = useState(1);
 	const [Loading, setLoading] = useState(true);
 	/* const [lastImgElement] = useInfiniteScroll(Loading); */
-
+	console.log("History :::", history);
 	const observer = useRef();
 	const lastImgElement = useCallback(
 		(node) => {

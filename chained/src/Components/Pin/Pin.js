@@ -11,7 +11,6 @@ const Pin = (props) => {
 	const wrapperRef = useRef();
 	const handleclick = () => {
 		if (!IsMouseOverPin) {
-			console.log("heyy");
 			history.push({
 				pathname: "/",
 			});
@@ -43,7 +42,7 @@ const Pin = (props) => {
 					</div>
 				</div>
 			</div>
-			<MoreLikeThis></MoreLikeThis>
+			<MoreLikeThis history={history}></MoreLikeThis>
 		</div>
 	);
 };
