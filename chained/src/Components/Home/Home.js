@@ -13,7 +13,7 @@ import Card from "./Card/Card";
 import CardCollection from "../CardCollection/CardCollection";
 import FetchImagesFromApi from "../FetchImagesFromApi/FetchImagesFromApi";
 //hooks
-import useInfiniteScroll from "../../Hooks/useInfiniteScroll";
+
 //context
 import SearchContext from "../../SearchContext";
 import ImagesContext from "../../ImagesContext";

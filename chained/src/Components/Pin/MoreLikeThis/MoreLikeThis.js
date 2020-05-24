@@ -3,8 +3,7 @@ import Styles from "./MoreLikeThis.module.css";
 /* import PinsDisplaySection from "./PinsDisplaySection/PinsDisplaySection"; */
 import CardCollection from "../../CardCollection/CardCollection";
 import FetchImagesFromApi from "../../FetchImagesFromApi/FetchImagesFromApi";
-//hook
-import useInfiniteScroll from "../../../Hooks/useInfiniteScroll";
+
 import LoadingContext from "../../../LoadingContext";
 export default function MoreLikeThis(props) {
 	/* const { lastImgElement } = useInfiniteScroll(); */
