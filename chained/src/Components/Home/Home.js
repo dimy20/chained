@@ -20,6 +20,7 @@ import ImagesContext from "../../ImagesContext";
 import LoadingContext from "../../LoadingContext";
 const Home = ({ history }) => {
 	const { SearchString, setSearchString } = useContext(SearchContext);
+	console.log(SearchString);
 	const [imgNumber, setimgNumber] = useState(1);
 	const [Loading, setLoading] = useState(true);
 	/* const [lastImgElement] = useInfiniteScroll(Loading); */

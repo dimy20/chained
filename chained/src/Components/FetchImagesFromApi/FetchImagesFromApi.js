@@ -26,7 +26,7 @@ export default function FetchImagesFromApi(props) {
 		})
 			.then((response) => {
 				//FIX THIS REPETTITIOS
-				console.log(response.data.hits[0].id);
+				console.log(response.data.hits[0]);
 				setImgArr((prevImgs) => {
 					return [...new Set([...prevImgs, ...response.data.hits])];
 				});

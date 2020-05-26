@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Styles from "./Card.module.css";
 import { Popover, OverlayTrigger, ListGroup } from "react-bootstrap";
 const Card = (props) => {
-	const { src, history } = props;
+	const { src, history, tags } = props;
 	const [IsHovered, setIsHovered] = useState(false);
 	const handleOnMouseOver = () => {
 		setIsHovered(true);
@@ -15,7 +15,7 @@ const Card = (props) => {
 	const handleCardClick = () => {
 		history.push({
 			pathname: "/pin",
-			state: { src: src },
+			state: { src: src, tags: tags },
 		});
 	};
 

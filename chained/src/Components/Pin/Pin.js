@@ -5,7 +5,7 @@ import MoreLikeThis from "./MoreLikeThis/MoreLikeThis";
 import PinCard from "./PinCard/PinCard";
 const Pin = (props) => {
 	const { history } = props;
-	console.log(history);
+	console.log(history.location.state.tags);
 	return (
 		<div>
 			<PinCard history={history}></PinCard>

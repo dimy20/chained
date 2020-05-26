@@ -22,6 +22,7 @@ export default function CardCollection(props) {
 						}
 						return (
 							<Card
+								tags={img.tags}
 								history={history}
 								key={img.id}
 								src={img.largeImageURL}
