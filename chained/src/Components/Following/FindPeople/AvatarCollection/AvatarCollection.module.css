@@ -1,4 +1,15 @@
 .container {
+	position: relative;
 	display: flex;
 	align-self: center;
+	width: 400px;
+	justify-self: center;
+	overflow: hidden;
+	left: 20px;
+	cursor: pointer;
+}
+.avatar {
+	position: absolute;
+	width: 100%;
+	margin: 2px;
 }

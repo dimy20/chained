@@ -1,0 +1,16 @@
+.avatar {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	transition: 500ms all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.avatar:hover {
+	box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.6);
+}
+.text {
+	padding-top: 10px;
+}
