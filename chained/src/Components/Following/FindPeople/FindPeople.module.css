@@ -9,13 +9,11 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 }
-<<<<<<< HEAD
 .row2 {
 	width: 100%;
 	display: flex;
 }
-=======
->>>>>>> 0dbb31ef5d9890a795c21e9c0ed54f7274af4473
+
 .heading {
 	position: relative;
 	color: white;
@@ -35,8 +33,7 @@
 .Button:active {
 	border: none;
 }
-<<<<<<< HEAD
-.EditButton {
+HEAD .EditButton {
 	background-color: rgb(255, 255, 255);
 	width: 10%;
 	height: 35px;
@@ -70,5 +67,3 @@
 .SearchFollowed:focus {
 	width: 35%;
 }
-=======
->>>>>>> 0dbb31ef5d9890a795c21e9c0ed54f7274af4473
