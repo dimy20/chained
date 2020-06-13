@@ -33,7 +33,7 @@
 .Button:active {
 	border: none;
 }
-HEAD .EditButton {
+.EditButton {
 	background-color: rgb(255, 255, 255);
 	width: 10%;
 	height: 35px;

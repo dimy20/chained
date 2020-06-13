@@ -15,20 +15,16 @@ import Following from "./Components/Following/Following";
 //context
 import SearchContext from "./SearchContext";
 import ImagesContext from "./ImagesContext";
-<<<<<<< HEAD
 import PeopleYouFollowContext from "./Contexts/PeopleYouFollowContext";
 import FindPeopleContext from "./Contexts/FindPeopleContext";
-=======
->>>>>>> 0dbb31ef5d9890a795c21e9c0ed54f7274af4473
 
 const App = () => {
 	const [SearchString, setSearchString] = useState("");
 	const [ImgArrContext, setImgArrContext] = useState([]);
-<<<<<<< HEAD
+
 	const [IsPeopleYouFollowOpen, setIsPeopleYouFollowOpen] = useState(false);
 	const [IsFindPeopleOpen, setIsFindPeopleOpen] = useState(false);
-=======
->>>>>>> 0dbb31ef5d9890a795c21e9c0ed54f7274af4473
+
 	const routes = {
 		home: "/",
 		profile: "/profile",
@@ -56,7 +52,6 @@ const App = () => {
 					<ImagesContext.Provider value={{ ImgArrContext, setImgArrContext }}>
 						<Route path={routes.pin} exact component={Pin}></Route>
 					</ImagesContext.Provider>
-<<<<<<< HEAD
 					<FindPeopleContext.Provider
 						value={{ IsFindPeopleOpen, setIsFindPeopleOpen }}
 					>
@@ -70,9 +65,6 @@ const App = () => {
 							></Route>
 						</PeopleYouFollowContext.Provider>
 					</FindPeopleContext.Provider>
-=======
-					<Route path={routes.following} exact component={Following}></Route>
->>>>>>> 0dbb31ef5d9890a795c21e9c0ed54f7274af4473
 				</div>
 			</BrowserRouter>
 		</div>

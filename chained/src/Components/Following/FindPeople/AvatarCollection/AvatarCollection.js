@@ -17,23 +17,18 @@ export default function AvatarCollection(props) {
 	for (let i = 0; i < amount; i++) {
 		AvatarArrSize.push(0);
 	}
-<<<<<<< HEAD
+
 	return (
 		<div className={Styles.container}>
-=======
-	const handleClick = () => {
-		console.log("Clickeasdasd");
-	};
-	return (
-		<div onClick={handleClick} className={Styles.container}>
->>>>>>> 0dbb31ef5d9890a795c21e9c0ed54f7274af4473
-			{AvatarArrSize.map((a, index) => {
-				return (
-					<div key={index}>
-						<Avatar></Avatar>
-					</div>
-				);
-			})}
+			<div className={Styles.container}>
+				{AvatarArrSize.map((a, index) => {
+					return (
+						<div key={index}>
+							<Avatar></Avatar>
+						</div>
+					);
+				})}
+			</div>
 		</div>
 	);
 }
