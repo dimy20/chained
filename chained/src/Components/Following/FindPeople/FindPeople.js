@@ -6,6 +6,8 @@ import MyModal from "../../MyModal/MyModal";
 //Context
 import PeopleYouFollowContext from "../../../Contexts/PeopleYouFollowContext";
 import FindPeopleContext from "../../../Contexts/FindPeopleContext";
+
+import Test from "../../Test";
 export default function FindPeople() {
 	const { IsPeopleYouFollowOpen, setIsPeopleYouFollowOpen } = useContext(
 		PeopleYouFollowContext
@@ -66,6 +68,7 @@ export default function FindPeople() {
 				handleClose={handleFindPeopleClose}
 				header="Find new people"
 			></MyModal>
+			<Test></Test>
 		</div>
 	);
 }
