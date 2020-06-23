@@ -29,7 +29,7 @@ export default function MyModal(props) {
 							<p className={Styles.text}>Ok</p>
 						</div>
 					</div>
-					<div></div>
+					<div className={Styles.Row2}>{props.children}</div>
 				</div>
 			</Modal>
 		</div>

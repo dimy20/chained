@@ -1,0 +1,43 @@
+.Tab {
+	color: red;
+	font-weight: bold;
+	outline: none;
+}
+.Button {
+	text-align: center;
+	line-height: initial;
+	font-weight: bold;
+	cursor: pointer;
+	transition: linear 200ms all;
+	margin: 0;
+	color: white;
+	display: inline-block;
+}
+.Button:hover {
+	z-index: 100;
+	border-bottom: 3px solid black;
+}
+.Button:focus {
+	border: 2px solid black;
+}
+.Container {
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-rows: 10% 90%;
+}
+.NavBarContainer {
+	display: flex;
+	border: 2px solid yellow;
+	width: 60%;
+	justify-self: center;
+	justify-items: center;
+	align-items: center;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.TabPanelContainer {
+	width: 100%;
+	height: 100%;
+	border: 2px solid blue;
+}

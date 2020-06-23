@@ -3,6 +3,7 @@ import Styles from "./FindPeople.module.css";
 import AvatarCollection from "./AvatarCollection/AvatarCollection";
 import { Carousel } from "react-bootstrap";
 import MyModal from "../../MyModal/MyModal";
+import NavBar from "../../NavBar/NavBar";
 //Context
 import PeopleYouFollowContext from "../../../Contexts/PeopleYouFollowContext";
 import FindPeopleContext from "../../../Contexts/FindPeopleContext";
@@ -67,7 +68,11 @@ export default function FindPeople() {
 				open={IsFindPeopleOpen}
 				handleClose={handleFindPeopleClose}
 				header="Find new people"
-			></MyModal>
+			>
+				<div className={Styles.FindPeopleModalTabContainer}>
+					{<NavBar></NavBar>}
+				</div>
+			</MyModal>
 			<Test></Test>
 		</div>
 	);
