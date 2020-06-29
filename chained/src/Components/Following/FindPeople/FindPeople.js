@@ -8,8 +8,7 @@ import NavBar from "../../NavBar/NavBar";
 import PeopleYouFollowContext from "../../../Contexts/PeopleYouFollowContext";
 import FindPeopleContext from "../../../Contexts/FindPeopleContext";
 
-import Test from "../../Test";
-export default function FindPeople() {
+export default function FindPeople({ history }) {
 	const { IsPeopleYouFollowOpen, setIsPeopleYouFollowOpen } = useContext(
 		PeopleYouFollowContext
 	);
@@ -70,10 +69,9 @@ export default function FindPeople() {
 				header="Find new people"
 			>
 				<div className={Styles.FindPeopleModalTabContainer}>
-					{<NavBar></NavBar>}
+					{<NavBar history={history}></NavBar>}
 				</div>
 			</MyModal>
-			<Test></Test>
 		</div>
 	);
 }
