@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import Styles from "./Home.module.css";
 import { CircularProgress } from "@material-ui/core";
-
+import axios from "axios";
 //components
 import Card from "./Card/Card";
 import CardCollection from "../CardCollection/CardCollection";
@@ -45,6 +45,19 @@ const Home = ({ history }) => {
 		},
 		[Loading]
 	);
+	useEffect(() => {
+		axios({
+			method: "POST",
+			url:
+				"https://api.imgur.com/oauth2/authorize?client_id=5dfc22e72ea94c0&response_type=token",
+		})
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
 
 	return (
 		<div className={Styles.container}>

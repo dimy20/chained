@@ -41,7 +41,7 @@ TabPanel.propTypes = {
 
 export default function SimpleTabs(props) {
 	const { history } = props;
-	const [CurrentValue, setCurrentValue] = useState(0);
+	const [CurrentValue, setCurrentValue] = useState("0");
 	const [Loading, setLoading] = useState(false);
 	const [PageNumber, setPageNumber] = useState(1);
 	const ref1 = useRef();
@@ -52,6 +52,7 @@ export default function SimpleTabs(props) {
 	const ref6 = useRef();
 	const ref7 = useRef();
 	const refArr = [ref1, ref2, ref3, ref4, ref5, ref6, ref7];
+	//SETS CURRENT VALUE OF THE ACTIVE BUTTON
 	const handleClick = (event) => {
 		setCurrentValue(event.target.id);
 	};
