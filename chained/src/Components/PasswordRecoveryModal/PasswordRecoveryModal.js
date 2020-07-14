@@ -26,26 +26,29 @@ export default function ForgotPasswordModal(props) {
 				</Modal.Header>
 				<div
 					style={{
-						width: "100%",
+						width: "80%",
 						padding: "10px",
 						display: "grid",
+						justifySelf: "center",
+						height: "70px",
 					}}
 				>
 					<p
 						style={{
-							justifySelf: "center",
 							fontWeight: "bold",
-							fontSize: "15px",
+							fontSize: "16px",
+							color: "grey",
+							marginLeft: "7%",
 						}}
 					>
-						Use your email or username to recover your password
+						You can use your email or username to recover your password
 					</p>
 				</div>
 
 				<Modal.Body>
 					<Form onSubmit={handleSubmit}>
 						<div className={Styles.FormInnerContainer}>
-							<Form.Group style={{ width: "80%", justifySelf: "center" }}>
+							<Form.Group style={{ width: "90%", justifySelf: "center" }}>
 								<Form.Control
 									type="Email"
 									placeholder="Enter your email"
@@ -64,6 +67,7 @@ export default function ForgotPasswordModal(props) {
 										display: "flex",
 										justifyContent: "space-between",
 										width: "35%",
+										padding: "2px",
 									}}
 								>
 									<Button onClick={handleGoBackButton}>Go back</Button>

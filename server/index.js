@@ -11,6 +11,7 @@ const mongoose = require("mongoose");
 const descriptionsRoute = require("./api/routes/descriptions");
 const UserRoute = require("./api/routes/User");
 const auth = require("./api/routes/auth");
+const resetpwd = require("./api/routes/resetpwd");
 //handles cors erros
 app.use(cors());
 // request logger
@@ -25,6 +26,7 @@ app.use(BodyParser.json());
 app.use("/descriptions", descriptionsRoute);
 app.use("/user", UserRoute);
 app.use("/auth", auth);
+app.use("/password", resetpwd);
 // if we reach this line, it means none of the previous routes was able to handle the request
 // so we can set up a middleware with a not found error
 app.use((req, res, next) => {

@@ -100,14 +100,8 @@ export default function SignupModal(props) {
 		<div>
 			<Modal show={isOpen} onHide={handleClose} centered>
 				<Modal.Header>
-					<Modal.Title
-						style={{
-							fontWeight: "bold",
-							fontSize: "30px",
-							border: "2p solid red",
-						}}
-					>
-						<Container>Sign up</Container>
+					<Modal.Title>
+						<h1 style={{ fontWeight: "bold" }}>Sign up</h1>
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body style={{ height: "60%" }}>

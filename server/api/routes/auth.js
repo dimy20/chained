@@ -4,7 +4,7 @@ const joi = require("joi");
 const bcrypt = require("bcrypt");
 const db = require("../../db/connection");
 const jwt = require("jsonwebtoken");
-const { json } = require("body-parser");
+
 require("dotenv").config();
 //Validation schema
 const schema = joi.object({
@@ -32,7 +32,7 @@ const ResponseError409 = () => {
 	error.status = 409;
 	return error;
 };
-//db query
+//get the users collection from auth-testing db
 const users = db.get("users");
 users.createIndex("username", { unique: true });
 //route for signing up

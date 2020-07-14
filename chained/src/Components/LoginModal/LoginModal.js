@@ -74,8 +74,8 @@ export default function LoginModal(props) {
 		<div>
 			<Modal show={isOpen} onHide={handleClose} centered>
 				<Modal.Header closeButton>
-					<Modal.Title style={{ fontWeight: "bold", fontSize: "25px" }}>
-						Log in
+					<Modal.Title>
+						<h1 style={{ fontWeight: "bold" }}>Login</h1>
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
