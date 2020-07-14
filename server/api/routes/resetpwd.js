@@ -11,7 +11,13 @@ const schema = joi.object({
 		tlds: { allow: ["com", "net", "org"] },
 	}),
 });
-router.get("/reset", (req, res) => {
+//422 Unprocessable Entity - No user withs given email
+const ResponseError422 = () => {
+	const error = new Error("We could not find this email!");
+	error.status = 422;
+	return error;
+};
+router.post("/reset", (req, res, next) => {
 	users
 		.findOne({
 			email: req.body.email,
@@ -20,15 +26,15 @@ router.get("/reset", (req, res) => {
 			//User exists in the db
 			//Sends email to req.body.email
 			if (user) {
+				res.status(200);
 				res.json({
 					message: `An email with reset details has been sent to ${req.body.email}`,
 				});
 			} else {
-				res.json({
-					message: "You are not registered!",
-				});
+				next(ResponseError422());
 			}
 		})
+		//db error!!
 		.catch((err) => {
 			res.json({
 				error: err,
