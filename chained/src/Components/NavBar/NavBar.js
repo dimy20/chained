@@ -64,8 +64,8 @@ export default function SimpleTabs(props) {
 					if (refArr[i].current.id != CurrentValue) {
 						refArr[i].current.className = Styles.Button;
 					}
+					break;
 				}
-				break;
 			}
 		}
 	}, [CurrentValue]);

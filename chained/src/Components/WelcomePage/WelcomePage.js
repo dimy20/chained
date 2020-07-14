@@ -1,17 +1,12 @@
-import React from 'react';
-import Styles from './WelcomePage.module.css';
-import Logo from './Logo/Logo';
-import Login from './Login/Login';
-import Singup from './Signup/Singup'
-const SignupForm = ()=>{
-    return (
-        <div className = {Styles.container}>
-            <div className = {Styles.signAndLoginContainer}>
-                <Login></Login>
-                <Singup></Singup>
-            </div>
-            
-        </div>
-    )
+import React from "react";
+import WelcomeNavbar from "../WelcomeNavbar/WelcomeNavbar";
+const SignupForm = (props) => {
+	const { history } = props;
+	return (
+		<div style={{ width: "100%" }}>
+			<WelcomeNavbar history={history}></WelcomeNavbar>
+			<h1>Welcome page</h1>
+		</div>
+	);
 };
 export default SignupForm;
