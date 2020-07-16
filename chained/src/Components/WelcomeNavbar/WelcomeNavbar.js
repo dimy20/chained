@@ -30,7 +30,7 @@ export default function WelcomeNavbar(props) {
 		setIsLoginOpen(true);
 	};
 	return (
-		<div style={{ width: "100%" }}>
+		<div style={{ width: "100%", marginTop: "1vh" }}>
 			{/* Navbar */}
 			<Navbar bg="dark" variant="light" expand="lg">
 				<Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>

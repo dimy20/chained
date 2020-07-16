@@ -1,11 +1,13 @@
 import React from "react";
 import WelcomeNavbar from "../WelcomeNavbar/WelcomeNavbar";
+import Styles from "./WelcomePage.module.css";
+import MasonryGridLayout from "../MasonryGridLayout/MasonryGridLayout";
 const SignupForm = (props) => {
 	const { history } = props;
 	return (
-		<div style={{ width: "100%" }}>
+		<div className={Styles.Wrapper}>
 			<WelcomeNavbar history={history}></WelcomeNavbar>
-			<h1>Welcome page</h1>
+			<MasonryGridLayout></MasonryGridLayout>
 		</div>
 	);
 };
