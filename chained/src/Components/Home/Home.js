@@ -8,6 +8,7 @@ import React, {
 import Styles from "./Home.module.css";
 import { CircularProgress } from "@material-ui/core";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 //components
 import Card from "./Card/Card";
 import CardCollection from "../CardCollection/CardCollection";
@@ -19,6 +20,8 @@ import SearchContext from "../../SearchContext";
 import ImagesContext from "../../ImagesContext";
 import LoadingContext from "../../LoadingContext";
 const Home = ({ history }) => {
+	const [user, setUSer] = useState({});
+	const [redirect, setRidirect] = useState(false);
 	const { SearchString, setSearchString } = useContext(SearchContext);
 	console.log(SearchString);
 	const [imgNumber, setimgNumber] = useState(1);
@@ -59,6 +62,30 @@ const Home = ({ history }) => {
 			});
 	}, []);
 
+	useEffect(() => {
+		fetch("http://localhost:5000/", {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+		})
+			.then((res) => {
+				res.json().then((data) => {
+					if (data) {
+						setUSer(data);
+					} else {
+						localStorage.removeItem("token");
+						setRidirect(true);
+					}
+
+					console.log(data);
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
+
 	return (
 		<div className={Styles.container}>
 			<LoadingContext.Provider value={{ Loading, setLoading }}>
@@ -78,6 +105,7 @@ const Home = ({ history }) => {
 					}}
 				></FetchImagesFromApi>
 			</LoadingContext.Provider>
+			{redirect && <Redirect to="/"></Redirect>}
 		</div>
 	);
 };

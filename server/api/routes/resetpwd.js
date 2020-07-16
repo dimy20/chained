@@ -18,6 +18,7 @@ const ResponseError422 = () => {
 	return error;
 };
 router.post("/reset", (req, res, next) => {
+	console.log(req.body);
 	users
 		.findOne({
 			email: req.body.email,
@@ -27,9 +28,11 @@ router.post("/reset", (req, res, next) => {
 			//Sends email to req.body.email
 			if (user) {
 				res.status(200);
+				console.log(res.get("status"));
 				res.json({
 					message: `An email with reset details has been sent to ${req.body.email}`,
 				});
+				console.log(`Reset email sent to ${req.body.email}`);
 			} else {
 				next(ResponseError422());
 			}

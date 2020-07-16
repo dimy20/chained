@@ -3,9 +3,11 @@ import { Modal, Form, Button, Container, Alert } from "react-bootstrap";
 import { FormGroup } from "@material-ui/core";
 import Styles from "./PasswordRecoveryModal.module.css";
 import joi from "joi";
+import axios from "axios";
 export default function ForgotPasswordModal(props) {
 	const { show, onHide, closeLoginModal, setIsLoginOpen } = props;
 	const [ShowSendEmailButton, setShowSendEmailButton] = useState(false);
+	const requestUrl = "http://localhost:5000/password/reset";
 	const [ErrorAlert, setErrorAlert] = useState({
 		message: "",
 		showError: false,
@@ -31,35 +33,27 @@ export default function ForgotPasswordModal(props) {
 		});
 	};
 	const handleSubmit = () => {
-		console.log(user);
-		fetch("http://localhost:5000/password/reset", {
+		console.log("Data sent to server : ", user);
+		axios({
 			method: "POST",
-			body: JSON.stringify(user),
+			url: requestUrl,
 			headers: {
 				"Content-Type": "application/json",
 			},
+			data: {
+				email: user.email,
+			},
 		})
 			.then((res) => {
-				//All good
-				if (res.status === 200) {
-					console.log(res);
-					res.json().then((data) => {
-						console.log(data);
-					});
-					//Some error occured
-				} else {
-					res.json().then((data) => {
-						setErrorAlert({
-							message: data.error.message,
-							showError: true,
-						});
-					});
-				}
+				//fetched data
+				console.log(res.data.message);
 			})
 			.catch((err) => {
-				console.log(err);
+				//Error from server
+				console.log(err.response.data.error.message);
 			});
 	};
+
 	//If show is true, close the login Modal
 	useEffect(() => {
 		if (show) {
