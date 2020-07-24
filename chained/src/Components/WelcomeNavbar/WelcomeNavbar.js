@@ -30,15 +30,29 @@ export default function WelcomeNavbar(props) {
 		setIsLoginOpen(true);
 	};
 	return (
-		<div style={{ width: "100%", marginTop: "1vh" }}>
+		<div
+			style={{
+				width: "100%",
+				marginTop: "1vh",
+				display: "grid",
+			}}
+		>
 			{/* Navbar */}
-			<Navbar bg="dark" variant="light" expand="lg">
+			<Navbar
+				style={{
+					background: " rgba(0, 0, 0, 0.4)",
+					justifySelf: "center",
+					alignSelf: "center",
+					width: "90%",
+				}}
+				expand="lg"
+			>
 				<Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="mr-auto"></Nav>
 					<Form inline>
-						<Button style={{ margin: "5px" }}>About</Button>
+						<Button style={{ margin: "5px" }}>Post</Button>
 						<Button onClick={handleLoginClick} style={{ margin: "5px" }}>
 							Log in
 						</Button>

@@ -1,23 +1,104 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Styles from "./MasonryGridLayout.module.css";
+import { Button, Form } from "react-bootstrap";
+import AnimatedQuote from "../AnimatedQuote/AnimatedQuote";
+import MyCard from "./myCard";
 export default function MasonryGridLayout() {
+	const [show, setShow] = useState(true);
+	useEffect(() => {
+		setTimeout(() => {
+			setShow(false);
+		}, [4000]);
+	});
 	return (
 		<div className={Styles.container}>
 			<div className={Styles.Wrapper}>
-				<div className={Styles.GridBox}>1</div>
-				<div className={Styles.GridBox}>2</div>
-				<div className={Styles.GridBox}>3</div>
-				<div className={Styles.GridBox}>4</div>
-				<div className={Styles.GridBox}>5</div>
-				<div className={Styles.GridBox}>6</div>
-				<div className={Styles.GridBox}>7</div>
-				<div className={Styles.GridBox}>8</div>
-				<div className={Styles.GridBox}>9</div>
-				<div className={Styles.GridBox}>10</div>
-				<div className={Styles.GridBox}>11</div>
-				<div className={Styles.GridBox}>12</div>
-				<div className={Styles.GridBox}>13</div>
-				<div className={Styles.GridBox}>14</div>
+				<MyCard
+					username="Romina"
+					quote="“I love you, not only for what you are, but for what I am when I am with you.”"
+					tag="Love"
+					quoteTittle="Love for all"
+				></MyCard>
+
+				<MyCard
+					username="Romina"
+					quote="“I love you, not only for what you are, but for what I am when I am with you.”"
+					tag="Love"
+					quoteTittle="Love for all"
+				></MyCard>
+
+				<MyCard
+					username="Romina"
+					quote="“I love you, not only for what you are, but for what I am when I am with you.”"
+					tag="Love"
+					quoteTittle="Love for all"
+				></MyCard>
+
+				<MyCard
+					username="Romina"
+					quote="“I love you, not only for what you are, but for what I am when I am with you.”"
+					tag="Love"
+					quoteTittle="Love for all"
+				></MyCard>
+
+				<MyCard
+					username="Romina"
+					quote="“I love you, not only for what you are, but for what I am when I am with you.”"
+					tag="Love"
+					quoteTittle="Love for all"
+				></MyCard>
+				<MyCard
+					username="Romina"
+					quote="“I love you, not only for what you are, but for what I am when I am with you.”"
+					tag="Love"
+					quoteTittle="Love for all"
+				></MyCard>
+				<MyCard
+					username="Romina"
+					quote="“I love you, not only for what you are, but for what I am when I am with you.”"
+					tag="Love"
+					quoteTittle="Love for all"
+				></MyCard>
+				<MyCard
+					username="Romina"
+					quote="“I love you, not only for what you are, but for what I am when I am with you.”"
+					tag="Love"
+					quoteTittle="Love for all"
+				></MyCard>
+				<MyCard
+					username="Romina"
+					quote="“I love you, not only for what you are, but for what I am when I am with you.”"
+					tag="Love"
+					quoteTittle="Love for all"
+				></MyCard>
+				<MyCard
+					username="Romina"
+					quote="“I love you, not only for what you are, but for what I am when I am with you.”"
+					tag="Love"
+					quoteTittle="Love for all"
+				></MyCard>
+				<MyCard
+					username="Romina"
+					quote="“I love you, not only for what you are, but for what I am when I am with you.”"
+					tag="Love"
+					quoteTittle="Love for all"
+				></MyCard>
+				<MyCard
+					username="Romina"
+					quote="“I love you, not only for what you are, but for what I am when I am with you.”"
+					tag="Love"
+					quoteTittle="Love for all"
+				></MyCard>
+
+				{false && (
+					<MyCard
+						newquote={true}
+						username="Romina"
+						quote="“I love you, not only for what you are, but for what I am when I am with you.”"
+						tag="Love"
+						quoteTittle="Love for all"
+					></MyCard>
+				)}
 			</div>
 		</div>
 	);

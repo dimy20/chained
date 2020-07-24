@@ -8,10 +8,10 @@ const mongoose = require("mongoose");
 //middlewares
 const middlewares = require("./api/middlewares/middlewares");
 // importing routes
-const descriptionsRoute = require("./api/routes/descriptions");
-const UserRoute = require("./api/routes/User");
 const auth = require("./api/routes/auth");
 const resetpwd = require("./api/routes/resetpwd");
+const quote = require("./api/routes/quote");
+const user = require("./api/routes/user");
 //handles cors erros
 app.use(cors());
 // request logger
@@ -23,10 +23,10 @@ app.use(
 );
 app.use(BodyParser.json());
 app.use(middlewares.CheckTokenSetUser);
-app.use("/descriptions", descriptionsRoute);
-app.use("/user", UserRoute);
 app.use("/auth", auth);
 app.use("/password", resetpwd);
+app.use("/quote", quote);
+app.use("/user", user);
 
 app.get("/", (req, res) => {
 	res.json({
