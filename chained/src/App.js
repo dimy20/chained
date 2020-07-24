@@ -12,6 +12,7 @@ import Profile from "./Components/Profile/Profile";
 import WelcomePage from "./Components/WelcomePage/WelcomePage";
 import Pin from "./Components/Pin/Pin";
 import Following from "./Components/Following/Following";
+import Homev2 from "./Components/Homev2/Homev2";
 
 //context
 import SearchContext from "./SearchContext";
@@ -31,13 +32,14 @@ const App = () => {
 		signup: "/signup",
 		pin: "/pin",
 		following: "/following",
+		test: "/main",
 	};
 
 	return (
 		<div className={Styles.container}>
 			<BrowserRouter>
 				<SearchContext.Provider value={{ SearchString, setSearchString }}>
-					<Route path={routes.home} exact component={Toolbar}></Route>
+					<Route path={routes.test} exact component={Toolbar}></Route>
 				</SearchContext.Provider>
 
 				<ImagesContext.Provider value={{ ImgArrContext, setImgArrContext }}>
@@ -54,7 +56,7 @@ const App = () => {
 								return !localStorage.token ? (
 									<Redirect to="/"></Redirect>
 								) : (
-									<Home></Home>
+									<Homev2></Homev2>
 								);
 							}}
 						></Route>

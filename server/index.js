@@ -12,6 +12,7 @@ const auth = require("./api/routes/auth");
 const resetpwd = require("./api/routes/resetpwd");
 const quote = require("./api/routes/quote");
 const user = require("./api/routes/user");
+const tags = require("./api/routes/tags");
 //handles cors erros
 app.use(cors());
 // request logger
@@ -27,6 +28,7 @@ app.use("/auth", auth);
 app.use("/password", resetpwd);
 app.use("/quote", quote);
 app.use("/user", user);
+app.use("/tags", tags);
 
 app.get("/", (req, res) => {
 	res.json({

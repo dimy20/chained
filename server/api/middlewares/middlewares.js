@@ -19,7 +19,8 @@ const CheckTokenSetUser = (req, res, next) => {
 			next(); // all good continue
 		});
 	} else {
-		next(ResponseError403());
+		//Fix this
+		next();
 	}
 };
 
