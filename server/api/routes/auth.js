@@ -56,6 +56,10 @@ router.post("/signup", (req, res, next) => {
 								username: req.body.username,
 								email: req.body.email,
 								password: hashedPassword,
+								quotes: 0,
+								followers: 0,
+								notifications: 0,
+								inspires: 0,
 							};
 							users
 								.insert(newUser)
