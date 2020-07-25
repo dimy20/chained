@@ -39,6 +39,9 @@
 	height: 300px;
 	background-color: gainsboro;
 	margin: 0 auto;
+	display: grid;
+	grid-template-rows: 85% 15%;
+	border: 2px solid royalblue;
 }
 .EditProfilebtn {
 	padding: 5px;
@@ -48,9 +51,11 @@
 }
 .mainContent {
 	margin-top: 2.3%;
-	position: absolute;
-	margin-left: 1.5%;
-	border: 2px solid red;
+}
+.wrapper {
+	width: 75%;
+	height: 80%;
+	margin: 5% 0% 0% 6%;
 }
 .name {
 	margin-top: 1%;
@@ -62,17 +67,17 @@
 	color: black;
 }
 .quotes {
-	margin-top: -4.5%;
+	margin-top: -2%;
 	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-	font-weight: 520;
+	font-weight: 540;
 	line-height: 1.5;
 	letter-spacing: 0.00938em;
 	color: rgba(0, 0, 0, 0.7);
 }
 .inspired {
-	margin-top: -6.5%;
+	margin-top: -3%;
 	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-	font-weight: 520;
+	font-weight: 540;
 	line-height: 1.5;
 	letter-spacing: 0.00938em;
 	color: rgba(0, 0, 0, 0.7);

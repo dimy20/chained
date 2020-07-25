@@ -21,12 +21,14 @@ export default function Profile() {
 				</div>
 				<div className={Styles.content}>
 					<div className={Styles.mainContent}>
-						<h3 className={Styles.name}>Enzost4</h3>
-						<p className={Styles.quotes}>20 quotes</p>
-						<p className={Styles.inspired}>
-							267 people have been spired by enzost4
-						</p>
-						<p className={Styles.inspired}>89 Followers</p>
+						<div className={Styles.wrapper}>
+							<h3 className={Styles.name}>Enzost4</h3>
+							<p className={Styles.quotes}>20 quotes</p>
+							<p className={Styles.inspired}>
+								267 people have been spired by enzost4
+							</p>
+							<p className={Styles.inspired}>89 Followers</p>
+						</div>
 					</div>
 					<div className={Styles.bottomNavbar}></div>
 				</div>
