@@ -1,0 +1,6 @@
+.container {
+	width: 100%;
+	border: 2px solid red;
+	padding-left: 5em;
+	padding-top: 2em;
+}
