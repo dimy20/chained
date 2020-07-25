@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Styles from "./Homev2.module.css";
 import QuotesGrid from "./QuotesGrid/QuotesGrid";
 import { BrowserRouter, Route } from "react-router-dom";
-import Profile from "../Profile/Profile";
+import Profile from "./Profile/Profile";
 import NavList from "./NavList/NavList";
 import Notifications from "./Notifications/Notifications";
 import Messages from "./Messages/Messages";

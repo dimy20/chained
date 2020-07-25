@@ -12,3 +12,4 @@ POST http://localhost:5000/quote/createQuote -> Submits to the server a new quot
 PATCH http://localhost:5000/quote/addLike -> Increases the amount of likes by 1 to quoteId
 PATCH http://localhost:5000/quote/addview -> Increases the amount of views by 1 to quoteId
 DELETE http://localhost:5000/quote/delete -> Deletes quote corresponding to quoteId - PROTECTED
+-Ad qty quotes to user entity

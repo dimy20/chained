@@ -1,6 +1,6 @@
 import React from "react";
 
 const Profile = (props) => {
-	return <div>{<h1>Profile Component</h1>}</div>;
+	return <div></div>;
 };
 export default Profile;
