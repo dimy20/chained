@@ -1,37 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import QuotesGrid from "../../QuotesGrid/QuotesGrid";
 import Card from "../../../Card/Card";
 import Styles from "./UserQuotes.module.css";
-export default function UsersQuotes() {
+import { date } from "joi";
+export default function UsersQuotes(props) {
+	const { isProfile, isUser, userId } = props;
+	// 1-> This is called when is logged in
+	// 2-> This is called when is For an user
+
+	const [quotes, setQuotes] = useState([]);
+	useEffect(() => {
+		console.log("I got called");
+		if (isProfile) {
+			fetch("http://localhost:5000/user/quotes", {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${localStorage.token}`,
+				},
+			})
+				.then((res) => {
+					res.json().then((data) => {
+						setQuotes(data.quotes);
+					});
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		} else if (isUser) {
+			fetch(`http://localhost:5000/user/quotes/${userId}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${localStorage.token}`,
+				},
+			})
+				.then((res) => {
+					res.json().then((data) => {
+						setQuotes(data.quotes);
+					});
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
+	}, []);
+
 	return (
 		<div className={Styles.container}>
-			<Card
-				centered={true}
-				width="92%"
-				height="100%"
-				username="Romina"
-				quote="“I love you, not only for what you are, but for what I am when I am with you.”"
-				tag="Love"
-				quoteTittle="Love for all"
-			></Card>
-			<Card
-				centered={true}
-				width="92%"
-				height="100%"
-				username="Romina"
-				quote="“I love you, not only for what you are, but for what I am when I am with you.”"
-				tag="Love"
-				quoteTittle="Love for all"
-			></Card>
-			<Card
-				centered={true}
-				width="90%"
-				height="100%"
-				username="Romina"
-				quote="“I love you, not only for what you are, but for what I am when I am with you.”"
-				tag="Love"
-				quoteTittle="Love for all"
-			></Card>
+			{quotes.map((q, index) => {
+				return (
+					<Card
+						key={index}
+						centered={true}
+						width="92%"
+						height="100%"
+						username={q.author}
+						quote={`“${q.quote}”`}
+						tag="Love"
+						quoteTittle={q.title}
+					></Card>
+				);
+			})}
 		</div>
 	);
 }

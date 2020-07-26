@@ -8,6 +8,7 @@ import Notifications from "./Notifications/Notifications";
 import Messages from "./Messages/Messages";
 import Bookmarks from "./Bookmarks/Bookmarks";
 import Settings from "./Settings/Settings";
+import User from "./User/User";
 export default function Homev2() {
 	return (
 		<div className={Styles.Container}>
@@ -26,7 +27,7 @@ export default function Homev2() {
 						path="/profile"
 						exact
 						component={() => {
-							return <Profile></Profile>;
+							return <Profile isProfile></Profile>;
 						}}
 					></Route>
 
@@ -63,6 +64,13 @@ export default function Homev2() {
 						exact
 						component={() => {
 							return <Settings></Settings>;
+						}}
+					></Route>
+					<Route
+						path="/user"
+						exact
+						component={(props) => {
+							return <User {...props}></User>;
 						}}
 					></Route>
 				</div>

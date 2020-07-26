@@ -33,7 +33,7 @@ router.get("/profile", middleware.CheckTokenSetUser, (req, res, next) => {
 		});
 });
 // Returns json data about the user with the userId if exists
-router.get("/:userId", (req, res, next) => {
+router.get("/id/:userId", (req, res, next) => {
 	const userId = req.params.userId;
 	const users = db.get("users");
 	users
@@ -54,6 +54,42 @@ router.get("/:userId", (req, res, next) => {
 				err.status = 404; // bad request
 				next(err);
 			}
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+});
+// Returs json data for all quotes relaed to the user Logged in
+router.get("/quotes", middleware.CheckTokenSetUser, (req, res) => {
+	const quotes = db.get("quotes");
+	const userId = req.user._id;
+	quotes
+		.find({
+			user: ObjectID(userId),
+		})
+		.then((docs) => {
+			res.json({
+				quotes: docs,
+			});
+			console.log(docs);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+});
+//Returns json for quotes related to the userId
+router.get("/quotes/:userId", (req, res) => {
+	const userId = req.params.userId;
+	const quotes = db.get("quotes");
+	quotes
+		.find({
+			user: ObjectID(userId),
+		})
+		.then((docs) => {
+			res.json({
+				quotes: docs,
+			});
+			console.log(docs);
 		})
 		.catch((err) => {
 			console.log(err);

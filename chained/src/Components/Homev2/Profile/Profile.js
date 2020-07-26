@@ -6,7 +6,14 @@ import UserQuotes from "./UsersQuotes/UsersQuotes";
 import UserLikes from "./UserLikes/UserLikes";
 import UserBookmarks from "./UserBookmarks/UserBookmarks";
 import UserMore from "./UserMore/UserMore";
-export default function Profile() {
+export default function Profile(props) {
+	const { isUser, isProfile, userId } = props;
+	if (isUser) {
+		console.log(true);
+	} else {
+		console.log(false);
+	}
+
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const handleClick = (index) => {
 		setSelectedIndex(index);
@@ -20,38 +27,79 @@ export default function Profile() {
 		followers: "",
 	});
 	useEffect(() => {
-		fetch("http://localhost:5000/user/profile", {
-			method: "GET",
-			headers: {
-				Authorization: `Bearer ${localStorage.token}`,
-				"Content-Type": "application/json",
-			},
-		})
-			.then((res) => {
-				res.json().then((jsonData) => {
-					console.log(jsonData.data.user);
-					const {
-						_id,
-						username,
-						email,
-						quotes,
-						notifications,
-						inspires,
-						followers,
-					} = jsonData.data.user;
-					setUser({
-						username: username,
-						email: email,
-						quotes: quotes,
-						notifications: notifications,
-						inspires: inspires,
-						followers: followers,
-					});
-				});
+		let unmounted = false;
+		if (isProfile) {
+			fetch("http://localhost:5000/user/profile", {
+				method: "GET",
+				headers: {
+					Authorization: `Bearer ${localStorage.token}`,
+					"Content-Type": "application/json",
+				},
 			})
-			.catch((err) => {
-				console.log(err);
-			});
+				.then((res) => {
+					res.json().then((jsonData) => {
+						const {
+							_id,
+							username,
+							email,
+							quotes,
+							notifications,
+							inspires,
+							followers,
+						} = jsonData.data.user;
+						if (!unmounted) {
+							setUser({
+								username: username,
+								email: email,
+								quotes: quotes,
+								notifications: notifications,
+								inspires: inspires,
+								followers: followers,
+							});
+						}
+					});
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		} else if (isUser) {
+			fetch(`http://localhost:5000/user/id/${userId}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			})
+				.then((res) => {
+					res.json().then((jsonData) => {
+						const {
+							_id,
+							username,
+							email,
+							quotes,
+							notifications,
+							inspires,
+							followers,
+						} = jsonData.data.user;
+						if (!unmounted) {
+							setUser({
+								username: username,
+								email: email,
+								quotes: quotes,
+								notifications: notifications,
+								inspires: inspires,
+								followers: followers,
+							});
+						}
+					});
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
+
+		return () => {
+			unmounted = true;
+		};
 	}, []);
 	return (
 		<div className={Styles.container}>
@@ -116,7 +164,7 @@ export default function Profile() {
 					</div>
 
 					<div className={Styles.ContentDisplay}>
-						{selectedIndex === 0 && <UserQuotes></UserQuotes>}
+						{selectedIndex === 0 && <UserQuotes {...props}></UserQuotes>}
 						{selectedIndex === 1 && <UserLikes></UserLikes>}
 						{selectedIndex === 2 && <UserBookmarks></UserBookmarks>}
 						{selectedIndex === 3 && <UserMore></UserMore>}

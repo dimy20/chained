@@ -30,12 +30,6 @@ app.use("/quote", quote);
 app.use("/user", user);
 app.use("/tags", tags);
 
-app.get("/", (req, res) => {
-	res.json({
-		message: "Welcome bitch!",
-		user: req.user,
-	});
-});
 // if we reach this line, it means none of the previous routes was able to handle the request
 // so we can set up a middleware with a not found error
 app.use((req, res, next) => {

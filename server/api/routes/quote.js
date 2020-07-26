@@ -11,10 +11,22 @@ const quoteSchema = joi.object({
 });
 
 // GET request for especific quote with id
-router.get("/", (req, res) => {
-	res.json({
-		message: `quote id : ${req.params.id}`,
-	});
+router.get("/id/:quoteId", (req, res) => {
+	const quotes = db.get("quotes");
+	const quoteId = req.params.quoteId;
+	quotes
+		.findOne({
+			_id: quoteId,
+		})
+		.then((doc) => {
+			console.log(doc);
+			res.json({
+				quote: doc,
+			});
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 });
 
 // needs auth to POST in this route
@@ -49,6 +61,17 @@ router.post("/createQuote", middleware.CheckTokenSetUser, (req, res) => {
 							res.json({
 								message: `${user.username} just added a quote : ${quoteCreated.tittle}`,
 							});
+							// +1 to user quotes
+							users
+								.findOneAndUpdate(
+									{
+										_id: user._id,
+									},
+									{ $inc: { quotes: 1 } }
+								)
+								.then((updateDocs) => {
+									console.log("+1");
+								});
 						})
 						.catch((err) => {
 							console.log(err);
@@ -111,7 +134,7 @@ router.patch("/incViews", (req, res) => {
 			console.log(err);
 		});
 });
-//If auth deletes quoteID from db
+//If auth,  deletes quoteID from db
 router.delete("/delete", middleware.CheckTokenSetUser, (req, res) => {
 	const quoteId = req.body.quoteId;
 	const quotes = db.get("quotes");
