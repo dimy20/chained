@@ -41,7 +41,7 @@
 	margin: 0 auto;
 	display: grid;
 	grid-template-rows: 85% 15%;
-	border: 2px solid royalblue;
+	/* border: 2px solid royalblue; */
 }
 .EditProfilebtn {
 	padding: 5px;
@@ -111,7 +111,6 @@
 .ContentDisplay {
 	width: 100%;
 	height: 452px; /* i dont like this */
-	border: 2px solid red;
 }
 @keyframes fadein {
 	0% {

@@ -11,40 +11,15 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 
 export default function MyCard(props) {
-	const { test, newquote, username, quoteTittle, quote, tag } = props;
-
-	const [testStyle, setTestStyle] = useState({
-		transform: ``,
-		opacity: "",
-	});
-
-	//console.log(TimeToHide);
-	const [show, setShow] = useState(false);
-
-	useEffect(() => {
-		if (newquote) {
-			setTestStyle({
-				transform: `translate(430%,-200%)`,
-				opacity: "0",
-			});
-		}
-	});
-
-	useEffect(() => {
-		if (test) {
-			//Time the card is going to live
-			const TimeToHide = Math.floor(Math.random() * 20 * 1000);
-			console.log(TimeToHide);
-			setTimeout(() => {
-				setShow(true);
-			}, TimeToHide);
-		}
-	});
-
+	const { centered, height, width, username, quoteTittle, quote, tag } = props;
+	let center = null;
+	if (centered) {
+		center = "center";
+	}
 	return (
 		<div
-			style={newquote ? testStyle : null}
-			className={newquote ? Styles.newQuote : Styles.wrapper}
+			style={{ width: width, height: height, justifySelf: center }}
+			className={Styles.wrapper}
 		>
 			<div className={Styles.section1}>
 				<p className={Styles.header}>{tag}</p>
