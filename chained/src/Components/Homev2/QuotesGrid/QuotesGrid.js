@@ -6,7 +6,7 @@ export default function QuotesColumns(props) {
 	const [quotes, setQuotes] = useState([]);
 	useEffect(() => {
 		let unmounted = false;
-		fetch("http://localhost:5000/quote/id/5f1cfb927103021128c36641", {
+		fetch("http://localhost:5000/quote/id/5f1d4804e7eb5251e0ee55a8", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

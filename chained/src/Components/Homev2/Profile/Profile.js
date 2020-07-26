@@ -8,12 +8,6 @@ import UserBookmarks from "./UserBookmarks/UserBookmarks";
 import UserMore from "./UserMore/UserMore";
 export default function Profile(props) {
 	const { isUser, isProfile, userId } = props;
-	if (isUser) {
-		console.log(true);
-	} else {
-		console.log(false);
-	}
-
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const handleClick = (index) => {
 		setSelectedIndex(index);
@@ -24,8 +18,47 @@ export default function Profile(props) {
 		quotes: "",
 		notifications: "",
 		inspires: "",
-		followers: "",
+		followers: [],
+		following: [],
 	});
+	const [following, setFollowing] = useState(false);
+
+	const handleFollowClick = () => {
+		fetch("http://localhost:5000/user/follow", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			body: JSON.stringify({
+				userToFollowId: userId,
+			}),
+		})
+			.then((res) => {
+				res.json().then((data) => {
+					console.log(data);
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+	useEffect(() => {
+		fetch("http://localhost:5000/user/isFollowedByLoggedUser", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			body: JSON.stringify({ userId: userId }),
+		}).then((res) => {
+			res.json().then((data) => {
+				setFollowing(data.isFollowedByLoggedUser);
+				console.log(data);
+			});
+		});
+	}, []);
+
 	useEffect(() => {
 		let unmounted = false;
 		if (isProfile) {
@@ -46,6 +79,7 @@ export default function Profile(props) {
 							notifications,
 							inspires,
 							followers,
+							following,
 						} = jsonData.data.user;
 						if (!unmounted) {
 							setUser({
@@ -55,6 +89,7 @@ export default function Profile(props) {
 								notifications: notifications,
 								inspires: inspires,
 								followers: followers,
+								following: following,
 							});
 						}
 					});
@@ -79,6 +114,7 @@ export default function Profile(props) {
 							notifications,
 							inspires,
 							followers,
+							following,
 						} = jsonData.data.user;
 						if (!unmounted) {
 							setUser({
@@ -88,6 +124,7 @@ export default function Profile(props) {
 								notifications: notifications,
 								inspires: inspires,
 								followers: followers,
+								following: following,
 							});
 						}
 					});
@@ -103,6 +140,7 @@ export default function Profile(props) {
 	}, []);
 	return (
 		<div className={Styles.container}>
+			{console.log(user.followers)}
 			<div className={Styles.section1}>
 				<InfoBar></InfoBar>
 			</div>
@@ -125,7 +163,25 @@ export default function Profile(props) {
 							<p className={Styles.inspired}>
 								{`${user.inspires} people have been spired by ${user.username}`}
 							</p>
-							<p className={Styles.inspired}>{`${user.followers} Followers`}</p>
+							<p
+								className={Styles.inspired}
+							>{`${user.followers.length} Followers`}</p>
+
+							{isUser && (
+								<div
+									style={{
+										display: "flex",
+										width: "34% ",
+										justifyContent: "space-between",
+									}}
+								>
+									<Button>Inspired</Button>
+									{following && <Button>Unfollow</Button>}
+									{!following && (
+										<Button onClick={handleFollowClick}>Follow</Button>
+									)}
+								</div>
+							)}
 						</div>
 					</div>
 					<div className={Styles.bottomNavbar}>
