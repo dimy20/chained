@@ -5,9 +5,9 @@ const db = require("../../db/connection");
 const middleware = require("../middlewares/middlewares");
 const monk = require("monk");
 const quoteSchema = joi.object({
-	tittle: joi.string().alphanum().max(20).min(4).required(),
-	quote: joi.string().max(150).min(20).required(),
-	author: joi.string().alphanum().max(20).min(5).required(),
+	tittle: joi.string().max(20).min(1).required(),
+	quote: joi.string().max(150).min(10).required(),
+	author: joi.string().alphanum().max(20).min(1).required(),
 });
 
 // GET request for especific quote with id

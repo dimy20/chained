@@ -57,7 +57,8 @@ router.post("/signup", (req, res, next) => {
 								email: req.body.email,
 								password: hashedPassword,
 								quotes: 0,
-								followers: 0,
+								followers: [],
+								following: [],
 								notifications: 0,
 								inspires: 0,
 							};

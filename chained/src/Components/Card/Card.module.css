@@ -70,7 +70,7 @@
 	margin-inline-end: 0px;
 }
 .section2 {
-	width: 45%;
+	width: 65%;
 	height: 80%;
 	justify-self: start;
 	display: grid;
@@ -84,6 +84,25 @@
 }
 .section1 {
 	height: 100%;
+}
+.IconBtn {
+	cursor: pointer;
+	color: #127ba3;
+}
+.innerElement {
+	display: flex;
+	justify-content: space-between;
+}
+.number {
+	margin-top: 1px;
+	font-size: 15px;
+	font-weight: 50;
+}
+.number1 {
+	margin-top: 1px;
+	margin-left: 3px;
+	font-size: 15px;
+	font-weight: 50;
 }
 @keyframes fadein {
 	0% {

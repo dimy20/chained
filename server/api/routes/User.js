@@ -95,4 +95,98 @@ router.get("/quotes/:userId", (req, res) => {
 			console.log(err);
 		});
 });
+router.post("/follow", middleware.CheckTokenSetUser, (req, res) => {
+	const loggedUserId = req.user._id;
+	const userToFollowId = req.body.userToFollowId;
+	console.log("HELLO", userToFollowId);
+	const users = db.get("users");
+	users
+		.findOneAndUpdate(
+			{
+				_id: loggedUserId,
+			},
+			{
+				$push: { following: ObjectID(userToFollowId) },
+			}
+		)
+		.then((updatedDoc) => {
+			users
+				.findOneAndUpdate(
+					{
+						_id: userToFollowId,
+					},
+					{
+						$push: { followers: ObjectID(loggedUserId) },
+					}
+				)
+				.then((doc) => {
+					res.json({
+						message: `You just followed ${userToFollowId}`,
+					});
+					console.log(`You just followed ${userToFollowId}`);
+				});
+		});
+});
+router.post("/unFollow", middleware.CheckTokenSetUser, (req, res) => {
+	const users = db.get("users");
+	const LoggedUserId = req.user._id;
+	const userToUnfollow = req.body.userToUnfollow;
+	users
+		.findOneAndUpdate(
+			{
+				_id: ObjectID(LoggedUserId),
+			},
+			{
+				$pull: { following: ObjectID(userToUnfollow) },
+			}
+		)
+		.then((updatedDoc) => {
+			users
+				.findOneAndUpdate(
+					{
+						_id: ObjectID(userToUnfollow),
+					},
+					{
+						$pull: { followers: ObjectID(LoggedUserId) },
+					}
+				)
+				.then((updatedDoc) => {
+					res.json({
+						message: `you no longer follow ${userToUnfollow}`,
+					});
+				});
+		});
+});
+
+router.post(
+	"/isFollowedByLoggedUser",
+	middleware.CheckTokenSetUser,
+	(req, res, next) => {
+		const loggedUserId = req.user._id;
+		const UserId = req.body.userId;
+		console.log(UserId);
+		const users = db.get("users");
+		users
+			.findOne({
+				_id: ObjectID(UserId),
+			})
+			.then((doc) => {
+				const obj = doc.followers.find((x) => {
+					return x == loggedUserId;
+				});
+				if (obj) {
+					res.json({
+						isFollowedByLoggedUser: true,
+					});
+				} else {
+					res.json({
+						isFollowedByLoggedUser: false,
+					});
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}
+);
 module.exports = router;

@@ -22,7 +22,27 @@ export default function Profile(props) {
 		following: [],
 	});
 	const [following, setFollowing] = useState(false);
-
+	const handleUnFollowClick = () => {
+		fetch("http://localhost:5000/user/unFollow", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			body: JSON.stringify({
+				userToUnfollow: userId,
+			}),
+		})
+			.then((res) => {
+				res.json().then((data) => {
+					console.log(data);
+					setFollowing(false);
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 	const handleFollowClick = () => {
 		fetch("http://localhost:5000/user/follow", {
 			method: "POST",
@@ -37,6 +57,7 @@ export default function Profile(props) {
 			.then((res) => {
 				res.json().then((data) => {
 					console.log(data);
+					setFollowing(true);
 				});
 			})
 			.catch((err) => {
@@ -44,19 +65,20 @@ export default function Profile(props) {
 			});
 	};
 	useEffect(() => {
-		fetch("http://localhost:5000/user/isFollowedByLoggedUser", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${localStorage.token}`,
-			},
-			body: JSON.stringify({ userId: userId }),
-		}).then((res) => {
-			res.json().then((data) => {
-				setFollowing(data.isFollowedByLoggedUser);
-				console.log(data);
+		if (isUser) {
+			fetch("http://localhost:5000/user/isFollowedByLoggedUser", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${localStorage.token}`,
+				},
+				body: JSON.stringify({ userId: userId }),
+			}).then((res) => {
+				res.json().then((data) => {
+					setFollowing(data.isFollowedByLoggedUser);
+				});
 			});
-		});
+		}
 	}, []);
 
 	useEffect(() => {
@@ -140,7 +162,6 @@ export default function Profile(props) {
 	}, []);
 	return (
 		<div className={Styles.container}>
-			{console.log(user.followers)}
 			<div className={Styles.section1}>
 				<InfoBar></InfoBar>
 			</div>
@@ -176,7 +197,9 @@ export default function Profile(props) {
 									}}
 								>
 									<Button>Inspired</Button>
-									{following && <Button>Unfollow</Button>}
+									{following && (
+										<Button onClick={handleUnFollowClick}>Unfollow</Button>
+									)}
 									{!following && (
 										<Button onClick={handleFollowClick}>Follow</Button>
 									)}

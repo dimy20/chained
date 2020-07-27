@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "../../Card/Card";
 import Styles from "./QuotesGrid.module.css";
-
+import ProfilePicture from "./ProfilePicture/ProfilePicture";
 export default function QuotesColumns(props) {
 	const [quotes, setQuotes] = useState([]);
 	useEffect(() => {
@@ -33,15 +33,16 @@ export default function QuotesColumns(props) {
 				<div className={Styles.container}>
 					{quotes.map((q, index) => {
 						return (
-							<Card
-								user={q.user}
-								key={index}
-								redirectTo="/user"
-								username={q.author}
-								quote={`“${q.quote}”`}
-								tag="Love"
-								quoteTittle={q.title}
-							></Card>
+							<div key={index} className={Styles.wrapper}>
+								<ProfilePicture user={q.user}></ProfilePicture>
+								<Card
+									borderRadius="0 10px 10px 0"
+									username={q.author}
+									quote={`“${q.quote}”`}
+									tag="Love"
+									quoteTittle={q.title}
+								></Card>
+							</div>
 						);
 					})}
 				</div>

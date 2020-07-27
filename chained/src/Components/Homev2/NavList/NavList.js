@@ -4,6 +4,7 @@ import ListItem from "@material-ui/core/ListItem";
 import { Button } from "react-bootstrap";
 import Styles from "./NavList.module.css";
 import { Redirect } from "react-router-dom";
+import AddQuote from "./AddQuote/AddQuote";
 export default function NavList(props) {
 	const [route, setRoute] = useState("/home"); // default route after log in
 	return (
@@ -30,7 +31,9 @@ export default function NavList(props) {
 					<Button onClick={() => setRoute("/settings")}>Settigs</Button>
 				</ListItem>
 				<ListItem>
-					<Button onClick={() => setRoute("/profile")}>Quote</Button>
+					<div>
+						<AddQuote></AddQuote>
+					</div>
 				</ListItem>
 				<Redirect to={route}></Redirect>
 			</List>

@@ -5,13 +5,13 @@ import Styles from "./UserQuotes.module.css";
 import { date } from "joi";
 export default function UsersQuotes(props) {
 	const { isProfile, isUser, userId } = props;
+	const [redirectTo, setRedirectTo] = useState("");
 	// 1-> This is called when is logged in
 	// 2-> This is called when is For an user
-
 	const [quotes, setQuotes] = useState([]);
 	useEffect(() => {
-		console.log("I got called");
 		if (isProfile) {
+			setRedirectTo("/profile");
 			fetch("http://localhost:5000/user/quotes", {
 				method: "GET",
 				headers: {
@@ -28,6 +28,7 @@ export default function UsersQuotes(props) {
 					console.log(err);
 				});
 		} else if (isUser) {
+			setRedirectTo("/user");
 			fetch(`http://localhost:5000/user/quotes/${userId}`, {
 				method: "GET",
 				headers: {
@@ -51,6 +52,7 @@ export default function UsersQuotes(props) {
 			{quotes.map((q, index) => {
 				return (
 					<Card
+						redirectTo={redirectTo}
 						key={index}
 						centered={true}
 						width="92%"
