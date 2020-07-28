@@ -6,7 +6,7 @@ export default function QuotesColumns(props) {
 	const [quotes, setQuotes] = useState([]);
 	useEffect(() => {
 		let unmounted = false;
-		fetch("http://localhost:5000/quote/id/5f1d4804e7eb5251e0ee55a8", {
+		fetch("http://localhost:5000/quote/id/5f1f817e42cb613290046d5b", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -36,6 +36,7 @@ export default function QuotesColumns(props) {
 							<div key={index} className={Styles.wrapper}>
 								<ProfilePicture user={q.user}></ProfilePicture>
 								<Card
+									quoteId={q._id}
 									borderRadius="0 10px 10px 0"
 									username={q.author}
 									quote={`“${q.quote}”`}

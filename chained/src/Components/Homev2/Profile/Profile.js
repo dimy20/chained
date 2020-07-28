@@ -9,6 +9,8 @@ import UserMore from "./UserMore/UserMore";
 export default function Profile(props) {
 	const { isUser, isProfile, userId } = props;
 	const [selectedIndex, setSelectedIndex] = useState(0);
+	const [bookmarks, setBookmarks] = useState([]);
+	//const [ProfileImage, setProfileImage] = useState("");
 	const handleClick = (index) => {
 		setSelectedIndex(index);
 	};
@@ -22,6 +24,7 @@ export default function Profile(props) {
 		following: [],
 	});
 	const [following, setFollowing] = useState(false);
+
 	const handleUnFollowClick = () => {
 		fetch("http://localhost:5000/user/unFollow", {
 			method: "POST",
@@ -43,6 +46,7 @@ export default function Profile(props) {
 				console.log(err);
 			});
 	};
+
 	const handleFollowClick = () => {
 		fetch("http://localhost:5000/user/follow", {
 			method: "POST",
@@ -64,6 +68,44 @@ export default function Profile(props) {
 				console.log(err);
 			});
 	};
+	useEffect(() => {
+		//if is user calls api for arrays of bookmarks and stores them in state if has any
+		if (isUser) {
+			fetch(`http://localhost:5000/user/bookmarks/${userId}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			})
+				.then((res) => {
+					res.json().then((data) => {
+						setBookmarks(data.bookmarks);
+					});
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
+
+		if (isProfile) {
+			fetch("http://localhost:5000/user/profile/bookmarks", {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${localStorage.token}`,
+				},
+			})
+				.then((res) => {
+					res.json().then((data) => {
+						setBookmarks(data.bookmarks);
+					});
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
+	}, []);
+
 	useEffect(() => {
 		if (isUser) {
 			fetch("http://localhost:5000/user/isFollowedByLoggedUser", {
@@ -169,9 +211,7 @@ export default function Profile(props) {
 			<div className={Styles.section2}>
 				<div className={Styles.Header}>
 					<img
-						src={
-							"https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
-						}
+						src={"https://clikiads.com/static/images/blank_profile.png"}
 						className={Styles.profilePicture}
 					></img>
 					<Button className={Styles.EditProfilebtn}>Edit Profile</Button>
@@ -245,7 +285,14 @@ export default function Profile(props) {
 					<div className={Styles.ContentDisplay}>
 						{selectedIndex === 0 && <UserQuotes {...props}></UserQuotes>}
 						{selectedIndex === 1 && <UserLikes></UserLikes>}
-						{selectedIndex === 2 && <UserBookmarks></UserBookmarks>}
+						{selectedIndex === 2 && (
+							<UserBookmarks
+								isUser={isUser}
+								isProfile={isProfile}
+								userId={userId}
+								bookmarks={bookmarks}
+							></UserBookmarks>
+						)}
 						{selectedIndex === 3 && <UserMore></UserMore>}
 					</div>
 				</div>

@@ -7,8 +7,10 @@ import BookmarkIcon from "@material-ui/icons/Bookmark";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import { Redirect } from "react-router-dom";
 import { Popover } from "@material-ui/core";
+import { json } from "body-parser";
 export default function MyCard(props) {
 	const {
+		quoteId,
 		borderRadius,
 		centered,
 		height,
@@ -18,7 +20,7 @@ export default function MyCard(props) {
 		quote,
 		tag,
 	} = props;
-
+	//const [isFollowedByLoggedUser, setisFollowedByLoggedUser] = useState(false);
 	const [bookmarkBtn, setbookmarkBtn] = useState({
 		qty: 0,
 		isClicked: false,
@@ -27,19 +29,149 @@ export default function MyCard(props) {
 		qty: 0,
 		isClicked: false,
 	});
-
+	useEffect(() => {
+		fetch("http://localhost:5000/quote/isLikedByLoggedUser", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			body: JSON.stringify({ quoteId: quoteId }),
+		})
+			.then((res) => {
+				res.json().then((data) => {
+					console.log(data);
+					setLikesBtn({
+						qty: data.likesQty,
+						isClicked: data.isLikedByLoggedUser,
+					});
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
 	const handleLikesClick = () => {
-		setLikesBtn({
-			...likesBtn,
-			isClicked: true,
+		fetch("http://localhost:5000/quote/incLikes", {
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			body: JSON.stringify({ quoteId: quoteId }),
+		})
+			.then((res) => {
+				res.json().then((data) => {
+					console.log(data);
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		setLikesBtn((prev) => {
+			return {
+				qty: prev.qty + 1,
+				isClicked: true,
+			};
+		});
+	};
+	const handleUnlikeClick = () => {
+		fetch("http://localhost:5000/quote/removeLike", {
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			body: JSON.stringify({ quoteId: quoteId }),
+		})
+			.then((res) => {
+				res.json().then((data) => {
+					console.log(data);
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+
+		setLikesBtn((prev) => {
+			return {
+				isClicked: prev.qty - 1,
+				isClicked: !prev.isClicked,
+			};
 		});
 	};
 	const handleBookmarkClick = () => {
-		setbookmarkBtn({
-			...bookmarkBtn,
-			isClicked: true,
-		});
+		//FETCH
+		fetch("http://localhost:5000/user/addToBookmarks", {
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			body: JSON.stringify({ quoteId: quoteId }), // route needs the id to perfom queries
+		})
+			.then((res) => {
+				res.json().then((data) => {
+					//Updates states
+					setbookmarkBtn({
+						...bookmarkBtn,
+						isClicked: true,
+					});
+					console.log(data);
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
+	const handleBookmarkUnclik = () => {
+		//FETCH
+		fetch("http://localhost:5000/user/removeFromBookmarks", {
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			body: JSON.stringify({ quoteId: quoteId }), // route needs the id to perfom queries
+		})
+			.then((res) => {
+				res.json().then((data) => {
+					//Updates states
+					setbookmarkBtn((prev) => {
+						return {
+							...prev,
+							isClicked: !prev.isClicked,
+						};
+					});
+					console.log(data);
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+	//CHECK IF USER HAS THIS QUOTE IN BOOKMARKS OR NOT, TO RENDER THE CORRECT ICON ON MOUNTING
+	useEffect(() => {
+		fetch("http://localhost:5000/user/isQuoteInBookmarks", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+			body: JSON.stringify({ quoteId: quoteId }),
+		})
+			.then((res) => {
+				res.json().then((data) => {
+					setbookmarkBtn({
+						...bookmarkBtn,
+						isClicked: data.isQuoteInBookmarks,
+					});
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
 
 	let center = null;
 	if (centered) {
@@ -67,14 +199,7 @@ export default function MyCard(props) {
 					<div className={Styles.innerElement}>
 						{bookmarkBtn.isClicked ? (
 							<BookmarkIcon
-								onClick={() =>
-									setbookmarkBtn((prev) => {
-										return {
-											...prev,
-											isClicked: !prev.isClicked,
-										};
-									})
-								}
+								onClick={handleBookmarkUnclik}
 								className={Styles.IconBtn}
 							></BookmarkIcon>
 						) : (
@@ -88,14 +213,7 @@ export default function MyCard(props) {
 					<div className={Styles.innerElement}>
 						{likesBtn.isClicked ? (
 							<FavoriteIcon
-								onClick={() =>
-									setLikesBtn((prev) => {
-										return {
-											...prev,
-											isClicked: !prev.isClicked,
-										};
-									})
-								}
+								onClick={handleUnlikeClick}
 								className={Styles.IconBtn}
 							></FavoriteIcon>
 						) : (

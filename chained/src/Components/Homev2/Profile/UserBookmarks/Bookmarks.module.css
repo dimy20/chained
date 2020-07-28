@@ -1,0 +1,9 @@
+.contaier {
+	width: 90%;
+	margin: 0 auto;
+	border: 2px solid red;
+	display: grid;
+	grid-auto-rows: 200px;
+	overflow-y: 0;
+	overflow-x: hidden;
+}

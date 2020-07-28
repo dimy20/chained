@@ -52,6 +52,7 @@ export default function UsersQuotes(props) {
 			{quotes.map((q, index) => {
 				return (
 					<Card
+						quoteId={q._id}
 						redirectTo={redirectTo}
 						key={index}
 						centered={true}

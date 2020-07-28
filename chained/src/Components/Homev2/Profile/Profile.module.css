@@ -45,9 +45,9 @@
 }
 .EditProfilebtn {
 	padding: 5px;
-	margin-left: 55%;
-	margin-top: 15%;
-	position: relative;
+	position: absolute;
+	left: 1195px;
+	top: 220px;
 }
 .mainContent {
 	margin-top: 2.3%;
