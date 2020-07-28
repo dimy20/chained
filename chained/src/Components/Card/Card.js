@@ -102,8 +102,8 @@ export default function MyCard(props) {
 	};
 	const handleBookmarkClick = () => {
 		//FETCH
-		fetch("http://localhost:5000/user/addToBookmarks", {
-			method: "PATCH",
+		fetch("http://localhost:5000/bookmarks/add", {
+			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${localStorage.token}`,
@@ -126,8 +126,8 @@ export default function MyCard(props) {
 	};
 	const handleBookmarkUnclik = () => {
 		//FETCH
-		fetch("http://localhost:5000/user/removeFromBookmarks", {
-			method: "PATCH",
+		fetch("http://localhost:5000/bookmarks/remove", {
+			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${localStorage.token}`,
@@ -152,7 +152,7 @@ export default function MyCard(props) {
 	};
 	//CHECK IF USER HAS THIS QUOTE IN BOOKMARKS OR NOT, TO RENDER THE CORRECT ICON ON MOUNTING
 	useEffect(() => {
-		fetch("http://localhost:5000/user/isQuoteInBookmarks", {
+		fetch("http://localhost:5000/bookmarks/isQuoteInBookmarks", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -166,6 +166,7 @@ export default function MyCard(props) {
 						...bookmarkBtn,
 						isClicked: data.isQuoteInBookmarks,
 					});
+					console.log(data);
 				});
 			})
 			.catch((err) => {

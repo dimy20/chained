@@ -4,6 +4,8 @@ const joi = require("joi");
 const db = require("../../db/connection");
 const middleware = require("../middlewares/middlewares");
 const monk = require("monk");
+const { ObjectID } = require("mongodb");
+
 const quoteSchema = joi.object({
 	tittle: joi.string().max(20).min(1).required(),
 	quote: joi.string().max(150).min(10).required(),
@@ -53,6 +55,7 @@ router.post("/createQuote", middleware.CheckTokenSetUser, (req, res) => {
 						views: 0,
 						date: new Date(),
 						user: user._id,
+						likedBy: [],
 					};
 					quotes
 						.insert(newQuote)
@@ -90,7 +93,8 @@ router.post("/createQuote", middleware.CheckTokenSetUser, (req, res) => {
 });
 
 //Increases likes by 1 to quoteId
-router.patch("/incLikes", (req, res) => {
+router.patch("/incLikes", middleware.CheckTokenSetUser, (req, res) => {
+	const loggedUserId = req.user._id;
 	const quoteId = req.body.quoteId;
 	const quotes = db.get("quotes");
 	quotes
@@ -99,7 +103,32 @@ router.patch("/incLikes", (req, res) => {
 				_id: quoteId,
 			},
 			{
-				$inc: { likes: 1 }, // increases the value of likes by 1
+				$inc: { likes: 1 },
+				$push: { likedBy: ObjectID(loggedUserId) }, // increases the value of likes by 1
+			}
+		)
+		.then((updateDocs) => {
+			console.log(updateDocs);
+			res.json({
+				message: `liked : ${updateDocs.likedBy.length} `,
+			});
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+});
+router.patch("/removeLike", middleware.CheckTokenSetUser, (req, res) => {
+	const loggedUserId = req.user._id;
+	const quoteId = req.body.quoteId;
+	const quotes = db.get("quotes");
+	quotes
+		.findOneAndUpdate(
+			{
+				_id: quoteId,
+			},
+			{
+				$inc: { likes: -1 }, // increases the value of likes by 1
+				$pull: { likedBy: ObjectID(loggedUserId) },
 			}
 		)
 		.then((updateDocs) => {
@@ -112,6 +141,38 @@ router.patch("/incLikes", (req, res) => {
 			console.log(err);
 		});
 });
+router.post(
+	"/isLikedByLoggedUser",
+	middleware.CheckTokenSetUser,
+	(req, res) => {
+		const loggedUserId = req.user._id;
+		const quoteId = req.body.quoteId;
+		const quotes = db.get("quotes");
+		quotes
+			.findOne({
+				_id: quoteId,
+			})
+			.then((doc) => {
+				const obj = doc.likedBy.find((x) => {
+					return x == loggedUserId;
+				});
+				if (obj) {
+					res.json({
+						isLikedByLoggedUser: true,
+						likesQty: doc.likedBy.length,
+					});
+				} else {
+					res.json({
+						isLikedByLoggedUser: false,
+						likesQty: doc.likedBy.length,
+					});
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}
+);
 
 //Increases views by 1 to quoteId
 router.patch("/incViews", (req, res) => {

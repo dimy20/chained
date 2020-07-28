@@ -9,7 +9,6 @@ import UserMore from "./UserMore/UserMore";
 export default function Profile(props) {
 	const { isUser, isProfile, userId } = props;
 	const [selectedIndex, setSelectedIndex] = useState(0);
-	const [bookmarks, setBookmarks] = useState([]);
 	//const [ProfileImage, setProfileImage] = useState("");
 	const handleClick = (index) => {
 		setSelectedIndex(index);
@@ -68,7 +67,7 @@ export default function Profile(props) {
 				console.log(err);
 			});
 	};
-	useEffect(() => {
+	/* 	useEffect(() => {
 		//if is user calls api for arrays of bookmarks and stores them in state if has any
 		if (isUser) {
 			fetch(`http://localhost:5000/user/bookmarks/${userId}`, {
@@ -104,7 +103,7 @@ export default function Profile(props) {
 					console.log(err);
 				});
 		}
-	}, []);
+	}, []); */
 
 	useEffect(() => {
 		if (isUser) {
@@ -290,7 +289,6 @@ export default function Profile(props) {
 								isUser={isUser}
 								isProfile={isProfile}
 								userId={userId}
-								bookmarks={bookmarks}
 							></UserBookmarks>
 						)}
 						{selectedIndex === 3 && <UserMore></UserMore>}

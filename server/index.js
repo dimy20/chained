@@ -4,7 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const BodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
+const path = require("path");
 //middlewares
 const middlewares = require("./api/middlewares/middlewares");
 // importing routes
@@ -13,6 +13,7 @@ const resetpwd = require("./api/routes/resetpwd");
 const quote = require("./api/routes/quote");
 const user = require("./api/routes/user");
 const tags = require("./api/routes/tags");
+const bookmarks = require("./api/routes/bookmarks");
 //handles cors erros
 app.use(cors());
 // request logger
@@ -29,7 +30,8 @@ app.use("/password", resetpwd);
 app.use("/quote", quote);
 app.use("/user", user);
 app.use("/tags", tags);
-
+app.use("/bookmarks", bookmarks);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // if we reach this line, it means none of the previous routes was able to handle the request
 // so we can set up a middleware with a not found error
 app.use((req, res, next) => {

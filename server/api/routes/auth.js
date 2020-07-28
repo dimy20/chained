@@ -59,8 +59,7 @@ router.post("/signup", (req, res, next) => {
 								quotes: 0,
 								followers: [],
 								following: [],
-								notifications: 0,
-								inspires: 0,
+								/* bookmarks: [], */
 							};
 							users
 								.insert(newUser)
