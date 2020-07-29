@@ -6,9 +6,18 @@ import UserQuotes from "./UsersQuotes/UsersQuotes";
 import UserLikes from "./UserLikes/UserLikes";
 import UserBookmarks from "./UserBookmarks/UserBookmarks";
 import UserMore from "./UserMore/UserMore";
+import useAsyncData from "./useAsyncData";
 export default function Profile(props) {
 	const { isUser, isProfile, userId } = props;
 	const [selectedIndex, setSelectedIndex] = useState(0);
+	const [{ data, isLoading, isError }, dFetch] = useAsyncData(
+		null,
+		"http://localhost:5000/user/following"
+	);
+	if (data) {
+		console.log(data.following.length);
+	}
+
 	//const [ProfileImage, setProfileImage] = useState("");
 	const handleClick = (index) => {
 		setSelectedIndex(index);
@@ -37,7 +46,6 @@ export default function Profile(props) {
 		})
 			.then((res) => {
 				res.json().then((data) => {
-					console.log(data);
 					setFollowing(false);
 				});
 			})
@@ -59,7 +67,6 @@ export default function Profile(props) {
 		})
 			.then((res) => {
 				res.json().then((data) => {
-					console.log(data);
 					setFollowing(true);
 				});
 			})
@@ -67,43 +74,6 @@ export default function Profile(props) {
 				console.log(err);
 			});
 	};
-	/* 	useEffect(() => {
-		//if is user calls api for arrays of bookmarks and stores them in state if has any
-		if (isUser) {
-			fetch(`http://localhost:5000/user/bookmarks/${userId}`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			})
-				.then((res) => {
-					res.json().then((data) => {
-						setBookmarks(data.bookmarks);
-					});
-				})
-				.catch((err) => {
-					console.log(err);
-				});
-		}
-
-		if (isProfile) {
-			fetch("http://localhost:5000/user/profile/bookmarks", {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${localStorage.token}`,
-				},
-			})
-				.then((res) => {
-					res.json().then((data) => {
-						setBookmarks(data.bookmarks);
-					});
-				})
-				.catch((err) => {
-					console.log(err);
-				});
-		}
-	}, []); */
 
 	useEffect(() => {
 		if (isUser) {
@@ -220,9 +190,14 @@ export default function Profile(props) {
 						<div className={Styles.wrapper}>
 							<h3 className={Styles.name}>{user.username}</h3>
 							<p className={Styles.quotes}>{`${user.quotes} quotes`}</p>
-							<p className={Styles.inspired}>
-								{`${user.inspires} people have been spired by ${user.username}`}
-							</p>
+							{data ? (
+								<p
+									className={Styles.inspired}
+								>{`Following : ${data.following.length} `}</p>
+							) : (
+								<p className={Styles.inspired}>{`Following : 0`}</p>
+							)}
+
 							<p
 								className={Styles.inspired}
 							>{`${user.followers.length} Followers`}</p>

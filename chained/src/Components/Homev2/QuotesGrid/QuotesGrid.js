@@ -4,6 +4,7 @@ import Styles from "./QuotesGrid.module.css";
 import ProfilePicture from "./ProfilePicture/ProfilePicture";
 export default function QuotesColumns(props) {
 	const [quotes, setQuotes] = useState([]);
+
 	useEffect(() => {
 		let unmounted = false;
 		fetch("http://localhost:5000/quote/id/5f20457662ead3489c15f6d2", {
